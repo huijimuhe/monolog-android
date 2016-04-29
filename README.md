@@ -7,6 +7,7 @@
 ![](https://github.com/huijimuhe/monolog/blob/master/screenshot/3.jpg)
 ![](https://github.com/huijimuhe/monolog/blob/master/screenshot/4.jpg)
 ![](https://github.com/huijimuhe/monolog/blob/master/screenshot/5.jpg)
+
 Monolog was created for dating a girl,but she turned me down.
 
 Monolog is a fully functional LBS IM android application,you can try it [here](http://http://fir.im/monolog)

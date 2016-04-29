@@ -2,6 +2,11 @@
 
 ##Intro
 
+![](https://github.com/huijimuhe/monolog/blob/master/screenshot/1.jpg)
+![](https://github.com/huijimuhe/monolog/blob/master/screenshot/2.jpg)
+![](https://github.com/huijimuhe/monolog/blob/master/screenshot/3.jpg)
+![](https://github.com/huijimuhe/monolog/blob/master/screenshot/4.jpg)
+![](https://github.com/huijimuhe/monolog/blob/master/screenshot/5.jpg)
 Monolog was created for dating a girl,but she turned me down.
 
 Monolog is a fully functional LBS IM android application,you can try it [here](http://http://fir.im/monolog)
@@ -35,6 +40,8 @@ All basic stuffs.
 ##Extra
 
 This project is still avaliable in stores,so I will countiue update.
+
+and as always.You can find store screenshot template file in \screenshot.
 
 Those whom just change AD id and upload to stores are unwelcome.If I find out,I will shut service down.
 

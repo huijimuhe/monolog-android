@@ -78,7 +78,7 @@ public abstract class AbstractMainActivity extends AbstractActivity implements D
         initFragment();
         initBaseLayout();
 
-        iad = new InterstitialAD(this, "1104878885","4020417016750632");
+        iad = new InterstitialAD(this, "[YOURS]","[YOURS]");
 
         newMsgReceiver.setNewMsgReceiveListener(this);
         registerNewMsgReceiver();

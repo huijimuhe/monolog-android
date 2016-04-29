@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#fff" />
+            <stroke
+                android:width="0.5dp"
+                android:color="#e8e8e8" />
+        </shape>
+    </item>
+
+    <item>
+        <bitmap
+            android:width="200dp"
+            android:height="200dp"
+            android:gravity="center"
+            android:src="@drawable/ic_text_add_image" />
+    </item>
+</layer-list>  

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/box_margin"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/statue_box"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="@dimen/box_margin"
+            android:background="#e8e8e8"
+            android:scaleType="fitStart" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/box_margin"
+            android:ellipsize="end"
+            android:lines="3" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.huijimuhe.monolog.widget.CircularImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/box_margin"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Text.Sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Person A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/box_margin"
+            android:layout_marginTop="@dimen/box_margin"
+            android:gravity="right"
+            android:orientation="horizontal"></LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/box_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.FunctionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="猜错/" />
+
+            <TextView
+                android:id="@+id/tv_right_count"
+                style="@style/Text.FunctionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/line_margin"
+                android:text="2" />
+
+            <TextView
+                style="@style/Text.FunctionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/box_margin"
+                android:text="猜对/" />
+
+            <TextView
+                android:id="@+id/tv_miss_count"
+                style="@style/Text.FunctionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/line_margin"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/tv_delete"
+                style="@style/Text.FunctionBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/box_margin"
+                android:text="举报" />
+
+            <TextView
+                android:id="@+id/tv_createdAt"
+                style="@style/Text.FunctionBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/box_margin"
+                android:gravity="right"
+                android:lines="1"
+                android:text="2024/1/2" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/statue_box">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/box_margin"
+        android:paddingLeft="@dimen/row_margin"
+        android:paddingRight="@dimen/box_margin"
+        android:gravity="center"
+        android:paddingTop="@dimen/box_margin">
+
+        <com.huijimuhe.monolog.widget.CircularImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/box_margin"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Text.Sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Person A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/btn_publish"
+        style="@style/Text.Button.NoMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/box_margin"
+        android:layout_marginLeft="@dimen/box_margin"
+        android:layout_marginTop="@dimen/box_margin"
+        android:layout_marginRight="@dimen/row_margin"
+        android:text="写独白"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/btn_chat"
+        style="@style/Text.Button.NoMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/box_margin"
+        android:layout_marginLeft="@dimen/box_margin"
+        android:layout_marginTop="@dimen/box_margin"
+        android:layout_marginRight="@dimen/row_margin"
+        android:text="私信"
+        android:visibility="gone"/>
+</RelativeLayout>

@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Text.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/line_margin"
+        android:text="@string/string_guess_who" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_gusses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/box_margin"
+        android:layout_marginTop="@dimen/row_margin"
+        android:layout_marginLeft="@dimen/row_margin"
+        android:layout_marginRight="@dimen/row_margin"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dp"
+        android:minHeight="120dp" />
+</LinearLayout>

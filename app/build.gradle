@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        debug {
+            keyAlias 'debug'
+            keyPassword 'monolog521'
+            storeFile file('d:/android/key/monolog/debug.jks')
+            storePassword 'monolog521'
+        }
+        release {
+            keyAlias 'debug'
+            keyPassword 'monolog521'
+            storeFile file('d:/android/key/monolog/debug.jks')
+            storePassword 'monolog521'
+        }
+    }
+    compileSdkVersion 22
+    buildToolsVersion '22.0.0'
+    defaultConfig {
+        applicationId "com.huijimuhe.monolog"
+        minSdkVersion 14
+        targetSdkVersion 19
+        versionCode 22
+        versionName "1.1"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    productFlavors {
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        _360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+        }
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+        huawei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+        }
+        qq {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "qq"]
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['jniLibs']
+        }
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':indicator')
+    compile project(':umengsdk')
+    compile project(':easemob')
+    compile('com.mikepenz:actionitembadge:3.0.0@aar') {
+        transitive = true
+    }
+    compile project(':multi-image-selector')
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.loopj.android:android-async-http:1.4.8'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.soundcloud.android:android-crop:1.0.1@aar'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.commit451:PhotoView:1.2.4'
+}

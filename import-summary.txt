@@ -1,0 +1,179 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* LICENSE
+* README.md
+* build.xml
+* ic_launcher-web.png
+* proguard-project.txt
+* simpledemo\
+* simpledemo\.classpath
+* simpledemo\.project
+* simpledemo\.settings\
+* simpledemo\.settings\org.eclipse.jdt.core.prefs
+* simpledemo\AndroidManifest.xml
+* simpledemo\bin\
+* simpledemo\bin\AndroidManifest.xml
+* simpledemo\bin\R.txt
+* simpledemo\bin\classes\
+* simpledemo\bin\classes\com\
+* simpledemo\bin\classes\com\easemob\
+* simpledemo\bin\classes\com\easemob\easeui\
+* simpledemo\bin\classes\com\easemob\easeui\R$anim.class
+* simpledemo\bin\classes\com\easemob\easeui\R$attr.class
+* simpledemo\bin\classes\com\easemob\easeui\R$color.class
+* simpledemo\bin\classes\com\easemob\easeui\R$dimen.class
+* simpledemo\bin\classes\com\easemob\easeui\R$drawable.class
+* simpledemo\bin\classes\com\easemob\easeui\R$id.class
+* simpledemo\bin\classes\com\easemob\easeui\R$layout.class
+* simpledemo\bin\classes\com\easemob\easeui\R$string.class
+* simpledemo\bin\classes\com\easemob\easeui\R$style.class
+* simpledemo\bin\classes\com\easemob\easeui\R$styleable.class
+* simpledemo\bin\classes\com\easemob\easeui\R.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\BuildConfig.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\DemoApplication.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$anim.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$attr.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$color.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$dimen.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$drawable.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$id.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$layout.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$string.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$style.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R$styleable.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\R.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\ChatActivity.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\LoginActivity$1$1$1.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\LoginActivity$1$1.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\LoginActivity$1.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\LoginActivity.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\MainActivity$1.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\MainActivity$2.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\MainActivity.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\SettingsFragment$1$1.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\SettingsFragment$1.class
+* simpledemo\bin\classes\com\easemob\easeuisimpledemo\ui\SettingsFragment.class
+* simpledemo\bin\jarlist.cache
+* simpledemo\gen\
+* simpledemo\gen\com\
+* simpledemo\gen\com\easemob\
+* simpledemo\gen\com\easemob\easeui\
+* simpledemo\gen\com\easemob\easeui\R.java
+* simpledemo\gen\com\easemob\easeuisimpledemo\
+* simpledemo\gen\com\easemob\easeuisimpledemo\BuildConfig.java
+* simpledemo\gen\com\easemob\easeuisimpledemo\R.java
+* simpledemo\ic_launcher-web.png
+* simpledemo\proguard-project.txt
+* simpledemo\project.properties
+* simpledemo\res\
+* simpledemo\res\color\
+* simpledemo\res\color\em_main_botton_text_color.xml
+* simpledemo\res\drawable-hdpi\
+* simpledemo\res\drawable-hdpi\em_contact_list_normal.png
+* simpledemo\res\drawable-hdpi\em_contact_list_selected.png
+* simpledemo\res\drawable-hdpi\em_conversation_normal.png
+* simpledemo\res\drawable-hdpi\em_conversation_selected.png
+* simpledemo\res\drawable-hdpi\em_settings_normal.png
+* simpledemo\res\drawable-hdpi\em_settings_selected.png
+* simpledemo\res\drawable-hdpi\em_unread_count_bg.9.png
+* simpledemo\res\drawable-hdpi\ic_launcher.png
+* simpledemo\res\drawable-mdpi\
+* simpledemo\res\drawable-mdpi\ic_launcher.png
+* simpledemo\res\drawable-xhdpi\
+* simpledemo\res\drawable-xhdpi\ic_launcher.png
+* simpledemo\res\drawable-xxhdpi\
+* simpledemo\res\drawable-xxhdpi\ic_launcher.png
+* simpledemo\res\drawable\
+* simpledemo\res\drawable\em_main_bottom_item_bg.xml
+* simpledemo\res\drawable\em_tab_chat_bg.xml
+* simpledemo\res\drawable\em_tab_contact_list_bg.xml
+* simpledemo\res\drawable\em_tab_setting_bg.xml
+* simpledemo\res\layout\
+* simpledemo\res\layout\activity_chat.xml
+* simpledemo\res\layout\activity_login.xml
+* simpledemo\res\layout\activity_main.xml
+* simpledemo\res\layout\fragment_settings.xml
+* simpledemo\res\values-w820dp\
+* simpledemo\res\values-w820dp\dimens.xml
+* simpledemo\res\values\
+* simpledemo\res\values\dimens.xml
+* simpledemo\res\values\strings.xml
+* simpledemo\src\
+* simpledemo\src\com\
+* simpledemo\src\com\easemob\
+* simpledemo\src\com\easemob\easeuisimpledemo\
+* simpledemo\src\com\easemob\easeuisimpledemo\DemoApplication.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\ChatActivity.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\LoginActivity.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\MainActivity.java
+* simpledemo\src\com\easemob\easeuisimpledemo\ui\SettingsFragment.java
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:20.+
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => easemob\src\main\AndroidManifest.xml
+* assets\ => easemob\src\main\assets
+* libs\armeabi\libBaiduMapSDK_v3_2_0_15.so => easemob\src\main\jniLibs\armeabi\libBaiduMapSDK_v3_2_0_15.so
+* libs\armeabi\libbspatch.so => easemob\src\main\jniLibs\armeabi\libbspatch.so
+* libs\armeabi\liblocSDK3.so => easemob\src\main\jniLibs\armeabi\liblocSDK3.so
+* libs\armeabi\libvi_voslib.so => easemob\src\main\jniLibs\armeabi\libvi_voslib.so
+* libs\baidumapapi_v3_2_0.jar => easemob\libs\baidumapapi_v3_2_0.jar
+* libs\easemobchat_2.2.3.jar => easemob\libs\easemobchat_2.2.3.jar
+* libs\google-play-services.jar => easemob\libs\google-play-services.jar
+* libs\locSDK_3.3.jar => easemob\libs\locSDK_3.3.jar
+* libs\picasso-2.4.0.jar => easemob\libs\picasso-2.4.0.jar
+* res\ => easemob\src\main\res\
+* src\ => easemob\src\main\java\
+
+Missing Android Support Repository:
+-----------------------------------
+Some useful libraries, such as the Android Support Library, are
+installed from a special Maven repository, which should be installed
+via the SDK manager.
+
+It looks like this library is missing from your SDK installation at:
+null
+
+To install it, open the SDK manager, and in the Extras category,
+select "Android Support Repository". You may also want to install the
+"Google Repository" if you want to use libraries like Google Play
+Services.
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

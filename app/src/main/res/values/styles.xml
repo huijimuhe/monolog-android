@@ -1,0 +1,88 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/background_main</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+
+    <style name="Spinner">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/spinner</item>
+        <item name="android:indeterminateDuration">2000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <style name="Text.Sub" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="Text.Title" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="Text.Button" parent="TextAppearance.AppCompat">
+        <item name="android:background">@drawable/background_auth_button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10sp</item>
+        <item name="android:paddingLeft">10sp</item>
+        <item name="android:paddingRight">10sp</item>
+        <item name="android:layout_margin">4sp</item>
+        <item name="android:lines">2</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="Text.Button.NoMargin" parent="TextAppearance.AppCompat">
+        <item name="android:background">@drawable/background_auth_button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10sp</item>
+        <item name="android:paddingLeft">10sp</item>
+        <item name="android:paddingRight">10sp</item>
+        <item name="android:lines">2</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="Text.Main" parent="TextAppearance.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="Text.Declare" parent="TextAppearance.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/line</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+
+    <style name="Text.FunctionBtn" parent="TextAppearance.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <!-- ToolBar -->
+    <style name="ToolBarStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">18sp</item>
+        <item name="actionMenuTextColor">#464646</item>
+        <item name="android:background">#f8f8f8</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

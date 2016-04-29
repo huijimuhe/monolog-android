@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Text.FunctionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="猜错/" />
+
+        <TextView
+            android:id="@+id/tv_right_count"
+            style="@style/Text.FunctionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/line_margin"
+            android:text="2" />
+
+        <TextView
+            style="@style/Text.FunctionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/box_margin"
+            android:text="猜对/" />
+
+        <TextView
+            android:id="@+id/tv_miss_count"
+            style="@style/Text.FunctionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/line_margin"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            style="@style/Text.FunctionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/box_margin"
+            android:text="举报" />
+
+        <TextView
+            android:id="@+id/tv_createdAt"
+            style="@style/Text.FunctionBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/box_margin"
+            android:gravity="right"
+            android:lines="1"
+            android:text="2024/1/2" />
+    </LinearLayout>

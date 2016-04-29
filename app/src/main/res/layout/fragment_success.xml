@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_success"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Text.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/line_margin"
+        android:text="@string/string_successed_declare" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/line_margin"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.huijimuhe.monolog.widget.CircularImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="@dimen/box_margin"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/Text.Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/iv_avatar"
+                android:layout_alignStart="@+id/iv_avatar"
+                android:layout_below="@+id/iv_avatar"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="Person" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/btn_chat"
+                style="@style/Text.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="与Ta私信"
+                android:textAlignment="center" />
+            <TextView
+                android:id="@+id/btn_share"
+                style="@style/Text.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分享经历 " />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

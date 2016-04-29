@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/box_margin"
+    android:orientation="vertical">
+    <!---->
+    <com.huijimuhe.monolog.widget.SquaredCircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop" />
+
+    <com.huijimuhe.monolog.widget.TypedTextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:text="Person"
+        android:paddingLeft="@dimen/row_margin"
+        android:paddingRight="@dimen/row_margin"
+        android:gravity="center" />
+</LinearLayout>

@@ -1,0 +1,122 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#00ffffff" />
+
+        <LinearLayout
+            android:id="@+id/layout_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/row_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/box_margin"
+                android:background="@drawable/statue_box"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/btn_editProfile"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="修改资料"
+                    android:padding="@dimen/row_margin" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/box_margin"
+                android:background="@drawable/statue_box"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/btn_cleanCache"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/statue_box"
+                    android:hint="清理缓存"
+                    android:visibility="gone"
+                    android:padding="@dimen/row_margin" />
+
+                <TextView
+                    android:id="@+id/btn_share"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/statue_box"
+                    android:hint="告诉朋友们"
+                    android:padding="@dimen/row_margin" />
+
+                <TextView
+                    android:id="@+id/btn_think"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/statue_box"
+                    android:hint="好评支持我们"
+                    android:padding="@dimen/row_margin" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/box_margin"
+                android:background="@drawable/statue_box"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/btn_about"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/statue_box"
+                    android:hint="关于独白"
+                    android:padding="@dimen/row_margin" />
+
+                <TextView
+                    android:id="@+id/btn_aggrement"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/statue_box"
+                    android:hint="用户协议"
+                    android:padding="@dimen/row_margin" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/box_margin"
+                android:background="@drawable/statue_box"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/btn_logout"
+                    style="@style/Text.Sub"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="退出登录"
+                    android:padding="@dimen/row_margin" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

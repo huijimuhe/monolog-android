@@ -1,0 +1,155 @@
+<resources>
+    <string name="app_name">独白故事</string>
+    <string name="string_ok">确定</string>
+    <string name="string_cancel">取消</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_sign_in">SigninActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_guide">GuideActivity</string>
+    <string name="title_activity_my_statues">MyStatuesActivity</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_create">CreateActivity</string>
+    <string name="title_activity_swipe">SwipeActivity</string>
+    <string name="string_loading">读取中</string>
+    <string name="string_from_near">来自附近</string>
+    <string name="string_guess_who">谁是Ta</string>
+    <string name="string_refresh_get_new_monolog">下拉刷新</string>
+    <string name="string_you_can_do_more">你可以</string>
+    <string name="string_publish_declare">很多时候你都有秘密其实想让别人知道,\n发表你的独白,\n让TA知道是你</string>
+    <string name="string_failed_declare">总是有人与你擦肩而过，这或许是最好的结果</string>
+    <string name="string_successed_declare">没错!Ta的独白有你知道</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="string_statue_default_text">世间有溺水三千,\n哪一瓢知我冷暖</string>
+    <string name="string_try_again">只是一次错过,请再刷新试试</string>
+    <string name="title_activity_right_list">RightListActivity</string>
+    <string name="title_activity_my_statue_list">MyStatueListActivity</string>
+    <string name="title_activity_guess_list">GuessListActivity</string>
+    <string name="error_40001">网络错误请重新刷新40001</string>
+    <string name="error_40002">网络错误请重新刷新40002</string>
+    <string name="error_no_network">网络连接失败</string>
+    <string name="string_sms_code_error">验证码错误，请重试</string>
+    <string name="string_phone_format_error">手机号格式错误</string>
+    <string name="string_please_enter_nick">请输入昵称</string>
+    <string name="string_please_enter_phone">请输入手机号</string>
+    <string name="string_please_enter_password">请输入密码</string>
+    <string name="string_please_enter_code">请输入验证码</string>
+    <string name="string_resent">重新发送</string>
+    <string name="string_sms_code_send">短信验证码已发送，请注意查收</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="error_40003">登录失败请重试40003</string>
+    <string name="error_40004">用户已存在40004</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_chat_list">ChatListActivity</string>
+    <string name="title_activity_contact_list">ContactListActivity</string>
+    <string name="title_activity_photo_view">PhotoViewActivity</string>
+    <string name="error_get_image">获取图片错误</string>
+    <string name="title_activity_phone_sign_up">PhoneSignUpActivity</string>
+    <string name="title_activity_phone_sign_in">PhoneSignInActivity</string>
+    <string name="string_share_content">我在独白秘密,我有话告诉你.来猜一下哪个是我.</string>
+    <string name="title_activity_user_statue">UserStatueActivity</string>
+    <string name="title_activity_user_statue_list">UserStatueListActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="title_activity_test2">Test2Activity</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+</resources>

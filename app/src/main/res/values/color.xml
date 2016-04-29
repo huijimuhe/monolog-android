@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main">#2d2d2d</color>
+    <color name="sub">#8d8d8d</color>
+    <color name="note">#8d8d8d</color>
+    <color name="line">#d1d1d1</color>
+    <color name="background">#ffffff</color>
+</resources>

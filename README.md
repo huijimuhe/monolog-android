@@ -48,9 +48,6 @@ Those whom just change AD id and upload to stores are unwelcome.If I find out,I 
 
 欢迎加入APP独立开发联盟qq技术交流群533838427
 
-
-自己做了个微信公众号，『懒文』->lanwenapp<-，还望大家关注
-
 ##License
 
 MIT

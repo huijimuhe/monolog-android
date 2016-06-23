@@ -1,4 +1,4 @@
-package com.huijimuhe.monolog.db.Schema;
+package com.huijimuhe.monolog.db.schema;
 
 
 public class DraftTable extends BaseSchema {

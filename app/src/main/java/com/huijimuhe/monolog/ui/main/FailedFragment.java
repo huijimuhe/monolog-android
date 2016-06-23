@@ -5,13 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.bean.IndexResponseBean;
-import com.huijimuhe.monolog.core.AppContext;
 import com.huijimuhe.monolog.ui.base.AbstractFragment;
 import com.huijimuhe.monolog.ui.statue.PublishActivity;
 
@@ -57,7 +52,7 @@ public class FailedFragment extends AbstractFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_share:
-                ((MainActivity) getActivity()).openShare();
+                //((MainActivity) getActivity()).openShare();
                 break;
             case R.id.btn_publish:
                 startActivityForResult(PublishActivity.newIntent(), PublishActivity.REQUEST_PUBLISH);

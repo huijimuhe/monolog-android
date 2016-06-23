@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class AbstractAdapter<T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {
+public abstract class  AbstractAdapter<T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {
     protected onItemClickListener mOnItemClickListener;
     protected onItemFunctionClickListener mOnItemFunctionClickListener;
 

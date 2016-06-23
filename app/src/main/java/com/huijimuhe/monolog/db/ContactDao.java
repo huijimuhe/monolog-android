@@ -6,8 +6,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.easemob.easeui.domain.EaseUser;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.db.Schema.ContactTable;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.db.schema.ContactTable;
 
 import java.util.ArrayList;
 
@@ -24,14 +24,14 @@ public class ContactDao {
         return databaseHelper.getReadableDatabase();
     }
 
-    public static ArrayList<UserBean> getList(String ownerId, String page) {
-        ArrayList<UserBean> list = new ArrayList<>();
+    public static ArrayList<Account> getList(String ownerId, String page) {
+        ArrayList<Account> list = new ArrayList<>();
         String sql = "select * from " + ContactTable.TABLE_NAME + " where "
                 + ContactTable.OWNERID + "  = '"
                 + ownerId + "' order by " + ContactTable.ID + " asc limit " + page;
         Cursor c = getRsd().rawQuery(sql, null);
         while (c.moveToNext()) {
-            UserBean user = new UserBean();
+            Account user = new Account();
             user.setName(c.getString(c.getColumnIndex(ContactTable.NAME)));
             user.setId(c.getString(c.getColumnIndex(ContactTable.UID)));
             user.setAvatar(c.getString(c.getColumnIndex(ContactTable.AVATAR)));
@@ -72,7 +72,7 @@ public class ContactDao {
         return user;
     }
 
-    public static void asyncReplaceAll(final ArrayList<UserBean> list, final String ownerid) {
+    public static void asyncReplaceAll(final ArrayList<Account> list, final String ownerid) {
         new Thread( new Runnable() {
             @Override
             public void run() {
@@ -82,7 +82,7 @@ public class ContactDao {
         }).start();
     }
 
-    public static void asyncReplace(final UserBean user, final String ownerid) {
+    public static void asyncReplace(final Account user, final String ownerid) {
         new Thread( new Runnable() {
             @Override
             public void run() {
@@ -92,7 +92,7 @@ public class ContactDao {
         }).start();
     }
 
-    public static void addContact(UserBean msg, String ownerid) {
+    public static void addContact(Account msg, String ownerid) {
         String sql = "select * from " + ContactTable.TABLE_NAME
                 + " where " + ContactTable.UID + " = '" + msg.getId()
                 + "' and " + ContactTable.OWNERID + "='" + ownerid+"'";
@@ -102,7 +102,7 @@ public class ContactDao {
         }
     }
 
-    public static void insert(UserBean msg, String ownerid) {
+    public static void insert(Account msg, String ownerid) {
 
         DatabaseUtils.InsertHelper ih = new DatabaseUtils.InsertHelper(getWsd(),
                 ContactTable.TABLE_NAME);
@@ -136,7 +136,7 @@ public class ContactDao {
         }
     }
 
-    public static void insertList(ArrayList<UserBean> list, String ownerid) {
+    public static void insertList(ArrayList<Account> list, String ownerid) {
 
         if (list == null || list.size() == 0) {
             return;
@@ -154,7 +154,7 @@ public class ContactDao {
         try {
             getWsd().beginTransaction();
             for (int i = 0; i < list.size(); i++) {
-                UserBean msg = list.get(i);
+                Account msg = list.get(i);
                 ih.prepareForInsert();
                 ih.bind(nameCol, msg.getName());
                 ih.bind(avatarCol, msg.getAvatar());

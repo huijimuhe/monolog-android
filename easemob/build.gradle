@@ -21,9 +21,9 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:22.2.1'
-    provided files('libs/BaiduLBS_Android.jar')
+    //provided files('libs/BaiduLBS_Android.jar')
     compile files('libs/easemobchat_2.2.3.jar')
     compile files('libs/google-play-services.jar')
-    provided files('libs/locSDK_3.3.jar')
-    provided files('libs/picasso-2.4.0.jar')
+   // provided files('libs/locSDK_3.3.jar')
+    compile files('libs/picasso-2.4.0.jar')
 }

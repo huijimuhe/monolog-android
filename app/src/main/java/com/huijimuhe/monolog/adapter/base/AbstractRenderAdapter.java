@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.huijimuhe.monolog.adapter.render.HeaderRender;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractRenderAdapter<T> extends RecyclerView.Adapter<AbstractViewHolder> {
@@ -20,20 +19,24 @@ public abstract class AbstractRenderAdapter<T> extends RecyclerView.Adapter<Abst
     public static final int BTN_CLICK_PUBLISH = 6;
 
     public static final int RENDER_TYPE_HEADER = 0;
+    public static final int RENDER_TYPE_FOOTER = 1;
 
     public int mViewType;
-    public ArrayList<T> mDataset;
+    public List<T> mDataset;
 
     public onItemClickListener mOnItemClickListener;
     public onItemFunctionClickListener mOnItemFunctionClickListener;
 
     protected View mHeaderView;
-   // protected AbstractRender mRender;
+    protected View mFooterView;
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 && mHeaderView != null) {
+        if (position == 0 && hasHeaderView()) {
             return RENDER_TYPE_HEADER;
+        }
+        if(position==getItemCount()-1 && hasFooterView()){
+            return RENDER_TYPE_FOOTER;
         }
         return mViewType;
     }
@@ -58,16 +61,34 @@ public abstract class AbstractRenderAdapter<T> extends RecyclerView.Adapter<Abst
         return mHeaderView == null ? mDataset.size() : mDataset.size() + 1;
     }
 
+    public void replace(List<T> data){
+        this.mDataset.clear();
+        this.mDataset=data;
+        notifyDataSetChanged();
+    }
+
+    public void remove(T data){
+
+        int position=mDataset.indexOf(data);
+        this.mDataset.remove(data);
+        notifyItemRemoved(hasHeaderView() && position!=0 ? position +1: position);
+    }
+
+    public void addAll(List<T> data){
+        this.mDataset.addAll(data);
+        notifyDataSetChanged();
+    }
+
     public List<T> getList() {
         return this.mDataset;
     }
 
     public int getRealPosition(int position) {
-        return mHeaderView == null ? position : position - 1;
+        return hasHeaderView() && position!=0 ? position - 1: position ;
     }
 
     public T getItem(int position) {
-        int temp=getRealPosition(position);
+        int r=getRealPosition(position);
         return mDataset.get(getRealPosition(position));
     }
 
@@ -87,11 +108,25 @@ public abstract class AbstractRenderAdapter<T> extends RecyclerView.Adapter<Abst
         public void onClick(View view, int postion, int type);
     }
 
+    public boolean hasHeaderView(){
+        return mHeaderView!=null;
+    }
     public void setHeaderView(View view) {
         mHeaderView = view;
     }
 
     public View getHeaderView() {
         return mHeaderView;
+    }
+
+    public boolean hasFooterView(){
+        return mFooterView!=null;
+    }
+    public void setFooterView(View view) {
+        mFooterView = view;
+    }
+
+    public View getFooterView() {
+        return mFooterView;
     }
 }

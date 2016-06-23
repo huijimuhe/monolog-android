@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Monolog.iml" filepath="$PROJECT_DIR$/Monolog.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/easemob/easemob.iml" filepath="$PROJECT_DIR$/easemob/easemob.iml" />
-      <module fileurl="file://$PROJECT_DIR$/indicator/indicator.iml" filepath="$PROJECT_DIR$/indicator/indicator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/monolog.iml" filepath="$PROJECT_DIR$/monolog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" filepath="$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" />
-      <module fileurl="file://$PROJECT_DIR$/umengsdk/umengsdk.iml" filepath="$PROJECT_DIR$/umengsdk/umengsdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social_sdk/social_sdk.iml" filepath="$PROJECT_DIR$/social_sdk/social_sdk.iml" />
     </modules>
   </component>
 </project>

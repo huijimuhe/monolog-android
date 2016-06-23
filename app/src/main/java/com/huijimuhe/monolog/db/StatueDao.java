@@ -6,8 +6,8 @@ import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.huijimuhe.monolog.bean.StatueBean;
-import com.huijimuhe.monolog.db.Schema.StatueTable;
+import com.huijimuhe.monolog.data.statue.Statue;
+import com.huijimuhe.monolog.db.schema.StatueTable;
 
 import java.util.ArrayList;
 
@@ -24,14 +24,14 @@ public class StatueDao {
         return databaseHelper.getReadableDatabase();
     }
 
-    public static ArrayList<StatueBean> getList(String uid, String page) {
-        ArrayList<StatueBean> statues = new ArrayList<>();
+    public static ArrayList<Statue> getList(String uid, String page) {
+        ArrayList<Statue> statues = new ArrayList<>();
         String sql = "select * from " + StatueTable.TABLE_NAME + " where "
                 + StatueTable.OWNERID + " = '"
                 + uid + "' order by " + StatueTable.ID + " asc limit " + page;
         Cursor c = getRsd().rawQuery(sql, null);
         while (c.moveToNext()) {
-            StatueBean statue = new StatueBean();
+            Statue statue = new Statue();
             statue.setId(c.getString(c.getColumnIndex(StatueTable.SID)));
             statue.setText(c.getString(c.getColumnIndex(StatueTable.TEXT)));
             statue.setImg_path(c.getString(c.getColumnIndex(StatueTable.IMG_PATH)));
@@ -45,7 +45,7 @@ public class StatueDao {
         return statues;
     }
 
-    public static void asyncReplace(final ArrayList<StatueBean> list, final String ownerid) {
+    public static void asyncReplace(final ArrayList<Statue> list, final String ownerid) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -57,7 +57,7 @@ public class StatueDao {
         new Thread(runnable).start();
     }
 
-    public static void updateCount(StatueBean statue) {
+    public static void updateCount(Statue statue) {
         String sql = "select * from " + StatueTable.TABLE_NAME + " where "
                 + StatueTable.SID + "  = '"
                 + statue.getId() + "'";
@@ -72,7 +72,7 @@ public class StatueDao {
         }
     }
 
-    public static void insertList(ArrayList<StatueBean> msgList, String uid) {
+    public static void insertList(ArrayList<Statue> msgList, String uid) {
 
         if (msgList == null || msgList.size() == 0) {
             return;
@@ -92,7 +92,7 @@ public class StatueDao {
         try {
             getWsd().beginTransaction();
             for (int i = 0; i < msgList.size(); i++) {
-                StatueBean msg = msgList.get(i);
+                Statue msg = msgList.get(i);
                 ih.prepareForInsert();
                 ih.bind(textCol, msg.getText());
                 ih.bind(img_pathCol, msg.getImg_path());

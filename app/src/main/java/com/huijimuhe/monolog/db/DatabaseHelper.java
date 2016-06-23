@@ -4,11 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.huijimuhe.monolog.core.AppContext;
-import com.huijimuhe.monolog.db.Schema.DraftTable;
-import com.huijimuhe.monolog.db.Schema.GuessTable;
-import com.huijimuhe.monolog.db.Schema.StatueTable;
-import com.huijimuhe.monolog.db.Schema.ContactTable;
+import com.huijimuhe.monolog.AppContext;
+import com.huijimuhe.monolog.db.schema.DraftTable;
+import com.huijimuhe.monolog.db.schema.GuessTable;
+import com.huijimuhe.monolog.db.schema.StatueTable;
+import com.huijimuhe.monolog.db.schema.ContactTable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

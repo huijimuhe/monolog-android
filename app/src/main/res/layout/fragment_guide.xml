@@ -4,21 +4,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.GuideFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/activity_horizontal_margin">
-
         <Button
             android:background="@drawable/background_auth_button"
             android:id="@+id/btn_jump"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:text="进入首页" />
-
-    </LinearLayout>
 
 </RelativeLayout>

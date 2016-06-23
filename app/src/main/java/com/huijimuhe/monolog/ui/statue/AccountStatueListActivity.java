@@ -5,8 +5,8 @@ import android.os.Bundle;
 
 import com.huijimuhe.monolog.R;
 import com.huijimuhe.monolog.adapter.StatueListAdapter;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.ui.base.AbstractListActivity;
 
 public class AccountStatueListActivity extends AbstractListActivity {
@@ -14,9 +14,9 @@ public class AccountStatueListActivity extends AbstractListActivity {
     public static final String RENDER_TYPE= "Type";
     public static final String ACCOUNT= "Account";
     private int mType;
-    private  UserBean mUser;
+    private Account mUser;
 
-    public static Intent newIntent(int type,UserBean user) {
+    public static Intent newIntent(int type,Account user) {
         Intent intent = new Intent(AppContext.getInstance(),
                 AccountStatueListActivity.class);
         intent.putExtra(RENDER_TYPE,type);
@@ -49,20 +49,6 @@ public class AccountStatueListActivity extends AbstractListActivity {
 
     @Override
     protected void setToolbarTitle() {
-        switch (mType){
-           case  StatueListAdapter.RENDER_TYPE_MISS:
-                toolbar.setTitle("独白");
-                break;
-            case  StatueListAdapter.RENDER_TYPE_RIGHT:
-                toolbar.setTitle("独白");
-                break;
-            case  StatueListAdapter.RENDER_TYPE_MY_PROFILE:
-                toolbar.setTitle("独白");
-                break;
-            case  StatueListAdapter.RENDER_TYPE_USER_PROFILE:
-                toolbar.setTitle("独白");
-                break;
-        }
-
+        toolbar.setTitle("独白");
     }
 }

@@ -10,8 +10,8 @@ import com.huijimuhe.monolog.R;
 import com.huijimuhe.monolog.adapter.base.AbstractRenderAdapter;
 import com.huijimuhe.monolog.adapter.base.AbstractRender;
 import com.huijimuhe.monolog.adapter.base.AbstractViewHolder;
-import com.huijimuhe.monolog.bean.StatueBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.data.statue.Statue;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.utils.NumUtils;
 import com.huijimuhe.monolog.utils.TimeUtils;
 
@@ -29,7 +29,7 @@ public class MissRender extends AbstractRender{
 
     @Override
     public void bindData(int position) {
-        StatueBean model=(StatueBean) mAdapter.getItem(position);
+        Statue model=(Statue) mAdapter.getItem(position);
         mHolder.mTvText.setText(model.getText());
         mHolder.mTvCreatedAt.setText(TimeUtils.getTime(model.getCreated_at()));
         mHolder.mTvRightCount.setText(NumUtils.converNumToString(model.getRight_count()));

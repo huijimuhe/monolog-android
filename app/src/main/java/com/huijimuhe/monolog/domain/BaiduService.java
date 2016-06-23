@@ -6,7 +6,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.huijimuhe.monolog.ui.base.OnBaiduLBSListener;
 
 /**
  * Created by Huijimuhe on 2016/3/20.
@@ -14,6 +13,7 @@ import com.huijimuhe.monolog.ui.base.OnBaiduLBSListener;
  * enjoy
  */
 public class BaiduService {
+
     protected static final String TAG = "BaiduService";
     /**
      * 单例

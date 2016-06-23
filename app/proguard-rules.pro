@@ -23,34 +23,73 @@
 #-libraryjars libs/qiniu-android-sdk-7.0.7.2.jar
 #-libraryjars libs/SMSSDK-1.3.1.jar
 #-libraryjars libs/umeng-analytics-v5.6.1.jar
+ -ignorewarnings
+ -dontshrink
+ -dontoptimize
+ -dontwarn com.google.android.maps.**
+ -dontwarn android.webkit.WebView
+ -dontwarn com.umeng.**
+ -dontwarn com.tencent.weibo.sdk.**
+ -dontwarn com.facebook.**
+ -keep public class javax.**
+ -keep public class android.webkit.**
+ -dontwarn android.support.v4.**
+ -keep enum com.facebook.**
+ -keepattributes Exceptions,InnerClasses,Signature
+ -keepattributes *Annotation*
+ -keepattributes SourceFile,LineNumberTable
 
--dontshrink
--dontoptimize
--dontwarn com.google.android.maps.**
--dontwarn android.webkit.WebView
--dontwarn com.umeng.**
--dontwarn com.tencent.weibo.sdk.**
--dontwarn com.facebook.**
--keep enum com.facebook.**
--keepattributes Exceptions,InnerClasses,Signature
--keepattributes *Annotation*
--keepattributes SourceFile,LineNumberTable
--keep public interface com.facebook.**
--keep public interface com.tencent.**
--keep public interface com.umeng.socialize.**
--keep public interface com.umeng.socialize.sensor.**
--keep public interface com.umeng.scrshot.**
--keep public class com.umeng.socialize.* {*;}
--keep public class javax.**
--keep public class android.webkit.**
--keep class com.facebook.**
--keep class com.umeng.scrshot.**
--keep public class com.tencent.** {*;}
--keep class com.umeng.socialize.sensor.**
--keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
--keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
--keep class im.yixin.sdk.api.YXMessage {*;}
--keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
+ -keep public interface com.facebook.**
+ -keep public interface com.tencent.**
+ -keep public interface com.umeng.socialize.**
+ -keep public interface com.umeng.socialize.sensor.**
+ -keep public interface com.umeng.scrshot.**
+
+ -keep public class com.umeng.socialize.* {*;}
+
+
+ -keep class com.facebook.**
+ -keep class com.facebook.** { *; }
+ -keep class com.umeng.scrshot.**
+ -keep public class com.tencent.** {*;}
+ -keep class com.umeng.socialize.sensor.**
+ -keep class com.umeng.socialize.handler.**
+ -keep class com.umeng.socialize.handler.*
+ -keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
+ -keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
+
+ -keep class im.yixin.sdk.api.YXMessage {*;}
+ -keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
+
+ -dontwarn twitter4j.**
+ -keep class twitter4j.** { *; }
+
+ -keep class com.tencent.** {*;}
+ -dontwarn com.tencent.**
+ -keep public class com.umeng.soexample.R$*{
+     public static final int *;
+ }
+ -keep public class com.umeng.soexample.R$*{
+     public static final int *;
+ }
+ -keep class com.tencent.open.TDialog$*
+ -keep class com.tencent.open.TDialog$* {*;}
+ -keep class com.tencent.open.PKDialog
+ -keep class com.tencent.open.PKDialog {*;}
+ -keep class com.tencent.open.PKDialog$*
+ -keep class com.tencent.open.PKDialog$* {*;}
+
+ -keep class com.sina.** {*;}
+ -dontwarn com.sina.**
+ -keep class  com.alipay.share.sdk.** {
+    *;
+ }
+ -keepnames class * implements android.os.Parcelable {
+     public static final ** CREATOR;
+ }
+
+ -keep class com.linkedin.** { *; }
+ -keepattributes Signature
 
 -dontwarn vi.com.gdi.bgl.android.**
 -keep class vi.com.gdi.bgl.android.** {*;}
@@ -74,12 +113,15 @@
 -keep class org.slf4j.** {*;}
 -keep class ch.imvs.** {*;}
 
--keep class com.qiniu.android.**{*;}
+-keep class com.qiniu.**{*;}
+-keep class com.qiniu.**{public <init>();}
+
 -keep class com.google.** { *; }
 -keep public class * extends com.squareup.picasso.**
 -dontwarn com.google.android.gms.**
 -keepclassmembers class * {   public <init>(org.json.JSONObject);}
 -keep public class com.huijimuhe.monolog.R$*{public static final int *;}
+
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
@@ -87,3 +129,12 @@
 -keep class * implements android.os.Parcelable { public static final android.os.Parcelable$Creator *;}
 -keepclassmembers class com.huijimuhe.monolog.ui.main.WebActivity$* {  public *;}
 -keep class com.huijimuhe.monolog.bean.**{*;}
+
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}

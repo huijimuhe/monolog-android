@@ -2,95 +2,62 @@ package com.huijimuhe.monolog.ui.main;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
 
+import com.easemob.EMCallBack;
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.AppContext;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.domain.BaiduService;
 import com.huijimuhe.monolog.domain.EaseMobService;
+import com.huijimuhe.monolog.domain.PrefManager;
 import com.huijimuhe.monolog.ui.auth.SignInActivity;
 import com.huijimuhe.monolog.ui.base.AbstractActivity;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
+import com.tencent.bugly.crashreport.CrashReport;
+import com.umeng.socialize.PlatformConfig;
 
 public class SplashActivity extends AbstractActivity {
-    private static final String TAG = "SplashActivity";
-    private static final int sleepTime = 4 * 1000;//等4秒
-    public boolean canJump = false;
+    private final String TAG = SplashActivity.class.getName();
+    private final int sleepTime = 4 * 1000;//等4秒
     private ViewGroup container;
-    private SplashAD splashAD;
+    private boolean mInited = false;
+    private Object lock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         setContentView(R.layout.activity_splash);
-        new Handler().postDelayed(new Runnable() {
+        //初始化
+        lock = new Object();
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                //显示广告
-                runAd();
+                Looper.prepare();
+                initEnvir();
             }
-        }, 500);
+        }).start();
+        //显示广告
+        setupSplashAd();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        canJump = false;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (canJump) {
-            next();
-        }
-        canJump = true;
-    }
-
-    /**
-     * 跑广告
-     */
-    private void runAd() {
-        setupSplashAd();
-        //设置开屏
-        initEnvir();
-    }
-
-    /**
-     * 跑应用的逻辑
-     * 延迟一下
-     */
-    @SuppressWarnings("unused")
-    private void runApp() {
-        long start = System.currentTimeMillis();
-        initEnvir();
-        long costTime = System.currentTimeMillis() - start;
-        if (sleepTime - costTime > 0) {
-            try {
-                Thread.sleep(sleepTime - costTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        String token = AppContext.getInstance().getToken();
-        if (TextUtils.isEmpty(token)) {
-            startActivity(SignInActivity.newIntent());
-        } else {
-            EaseMobService.getInstance().easeMobLogin(new Handler());
-            startActivity(MainActivity.newIntent());
-        }
-        finish();
     }
 
     /**
@@ -98,64 +65,89 @@ public class SplashActivity extends AbstractActivity {
      */
     private void initEnvir() {
         //初始化SDK
-        AppContext.getInstance().initEnvir();
-        canJump = true;
+        CrashReport.initCrashReport(getApplicationContext(), "900032888", false);
+        PrefManager.init(AppContext.getInstance());
+        PlatformConfig.setWeixin("wx0946e363f44df0d0", "4372f55b656db843a0107a3dbac2431e");
+        //easeMob
+        EaseMobService.getInstance().init(AppContext.getInstance());
+
+        String token = AppContext.getInstance().getToken();
+        if (!TextUtils.isEmpty(token)) {
+            Account account = PrefManager.getInstance().getUser();
+            EaseMobService.getInstance().easeMobLogin(account, new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                    synchronized (lock) {
+                        mInited = true;
+                        lock.notify();
+                    }
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    synchronized (lock) {
+                        mInited = true;
+                        lock.notify();
+                    }
+                }
+
+                @Override
+                public void onProgress(int i, String s) {
+
+                }
+            });
+        }
     }
 
     /**
      * 设置开屏广告
      */
+
     private void setupSplashAd() {
-        container = (ViewGroup) this.findViewById(R.id.splash_container);
-        //创建开屏广告，广告拉取成功后会自动展示在container中。Container会首先被清空
-        // "1104878885", "7040915046057449",
-        splashAD = new SplashAD(this, container, "1104878885", "7040915046057449", new SplashADListener() {
+        container = (ViewGroup) findViewById(R.id.splash_container);
+        new SplashAD(this, container, "1104878885", "7040915046057449", new SplashADListener() {
             @Override
             public void onADDismissed() {
-                Log.d(TAG,"dismiss");
                 next();
             }
 
             @Override
             public void onNoAD(int i) {
-                Log.d(TAG,"onNoAD");
                 next();
-//                String token = AppContext.getInstance().getToken();
-//                if (TextUtils.isEmpty(token)) {
-//                    startActivity(SignInActivity.newIntent());
-//                } else {
-//                    startActivity(MainActivity.newIntent());
-//                }
-//                finish();
             }
 
             @Override
             public void onADPresent() {
-
             }
 
             @Override
             public void onADClicked() {
-
             }
-        },sleepTime);
+        });
     }
 
     private void next() {
-        if (canJump) {
-            String token = AppContext.getInstance().getToken();
+        synchronized (lock) {
+            while (!mInited) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            String token = PrefManager.getInstance().getToken();
             if (TextUtils.isEmpty(token)) {
                 startActivity(SignInActivity.newIntent());
             } else {
                 startActivity(MainActivity.newIntent());
             }
             finish();
-        } else {
-            canJump = true;
         }
     }
 
-    /** 开屏页最好禁止用户对返回按钮的控制 */
+    /**
+     * 开屏页最好禁止用户对返回按钮的控制
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {

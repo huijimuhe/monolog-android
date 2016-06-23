@@ -14,19 +14,19 @@ import com.easemob.easeui.ui.EaseContactListFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.api.AuthApi;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.network.AuthApi;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.db.ContactDao;
 import com.huijimuhe.monolog.ui.base.AbstractActivity;
 import com.huijimuhe.monolog.utils.ToastUtils;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.Header;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ContactListActivity extends AbstractActivity {
     private View mListBackground;
@@ -105,7 +105,7 @@ public class ContactListActivity extends AbstractActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Gson gson = new Gson();
-                final ArrayList<UserBean> contacts = gson.fromJson(responseString, new TypeToken<ArrayList<UserBean>>() {
+                final ArrayList<Account> contacts = gson.fromJson(responseString, new TypeToken<ArrayList<Account>>() {
                 }.getType());
 
                 if (contacts.size() == 0) {

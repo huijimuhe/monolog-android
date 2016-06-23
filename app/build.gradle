@@ -15,40 +15,30 @@ android {
             storePassword 'monolog521'
         }
     }
-    compileSdkVersion 22
-    buildToolsVersion '22.0.0'
+
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
     defaultConfig {
+        // multiDexEnabled true
         applicationId "com.huijimuhe.monolog"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 19
-        versionCode 22
-        versionName "1.1"
+        versionCode 43
+        versionName "1.2"
+//        ndk {
+//            //设置支持的SO库架构
+//            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+//        }
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
     }
     productFlavors {
         xiaomi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-        }
-        _360 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
-        }
-        baidu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-        }
-        wandoujia {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
-        }
-        huawei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
-        }
-        qq {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "qq"]
         }
     }
     sourceSets {
@@ -57,22 +47,33 @@ android {
         }
     }
 }
+
+repositories {
+    flatDir {
+        dirs 'aars'
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':indicator')
-    compile project(':umengsdk')
+    compile(name: 'multi-image-selector', ext: 'aar')
+    //    compile(name: 'easemob', ext: 'aar')
+    compile project(':social_sdk')
     compile project(':easemob')
     compile('com.mikepenz:actionitembadge:3.0.0@aar') {
         transitive = true
     }
-    compile project(':multi-image-selector')
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.loopj.android:android-async-http:1.4.8'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.android.support:recyclerview-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.google.code.gson:gson:2.4'
+    //compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.commit451:PhotoView:1.2.4'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.tencent.bugly:crashreport:2.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.halysongoncalves:pugnotification:1.8.1'
 }

@@ -7,18 +7,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.api.AuthApi;
-import com.huijimuhe.monolog.api.BaseClient;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.network.AuthApi;
+import com.huijimuhe.monolog.network.BaseClient;
+import com.huijimuhe.monolog.AppContext;
+import com.huijimuhe.monolog.ui.auth.EditProfileActivity;
 import com.huijimuhe.monolog.ui.auth.SignInActivity;
 import com.huijimuhe.monolog.ui.base.AbstractActivity;
 import com.huijimuhe.monolog.ui.main.GuideActivity;
 import com.huijimuhe.monolog.ui.main.WebActivity;
 import com.huijimuhe.monolog.utils.MarketUtils;
-import com.huijimuhe.monolog.domain.PrefService;
+import com.huijimuhe.monolog.domain.PrefManager;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 
 public class SettingActivity extends AbstractActivity implements View.OnClickListener {
     private Toolbar toolbar;
@@ -65,7 +66,7 @@ public class SettingActivity extends AbstractActivity implements View.OnClickLis
                   cleanCache();
                   break;
               case R.id.btn_share:
-                  openShare();
+                  //openShare();
                   break;
               case R.id.btn_think:
                   think();
@@ -91,7 +92,7 @@ public class SettingActivity extends AbstractActivity implements View.OnClickLis
     }
 
     private  void logOut(){
-            PrefService.getInstance(getApplicationContext()).cleanUser();
+            PrefManager.getInstance().cleanUser();
             startActivity(SignInActivity.newIntent());
             AuthApi.signOut(new TextHttpResponseHandler() {
                 @Override

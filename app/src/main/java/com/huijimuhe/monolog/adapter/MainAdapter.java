@@ -14,13 +14,13 @@ import android.widget.TextView;
 
 import com.huijimuhe.monolog.R;
 import com.huijimuhe.monolog.adapter.base.AbstractAdapter;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
 
 import java.util.ArrayList;
 
 public class MainAdapter extends AbstractAdapter<MainAdapter.ViewHolder> {
-    private ArrayList<UserBean> mDataset;
+    private ArrayList<Account> mDataset;
     private Activity mActivity;
     private  final int mGridWidth;
 
@@ -43,7 +43,7 @@ public class MainAdapter extends AbstractAdapter<MainAdapter.ViewHolder> {
         }
     }
 
-    public MainAdapter(ArrayList<UserBean> users, Activity activity) {
+    public MainAdapter(ArrayList<Account> users, Activity activity) {
         mDataset = users;
         mActivity=activity;
 
@@ -82,7 +82,7 @@ public class MainAdapter extends AbstractAdapter<MainAdapter.ViewHolder> {
 
         //数据绑定
         try {
-            AppContext.getInstance().loadImg(holder.mAvatar, mDataset.get(position).getAvatar(), mGridWidth);
+            AppContext.getInstance().loadImg(holder.mAvatar, mDataset.get(position).getAvatar());//, mGridWidth);
             holder.mTextView.setText(mDataset.get(position).getName());
         }catch (Exception ex){
             ex.printStackTrace();

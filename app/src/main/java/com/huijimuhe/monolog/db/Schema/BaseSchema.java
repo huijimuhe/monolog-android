@@ -1,4 +1,4 @@
-package com.huijimuhe.monolog.db.Schema;
+package com.huijimuhe.monolog.db.schema;
 
 /**
  * Created by Administrator on 2015/10/29.

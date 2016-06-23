@@ -13,7 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.ui.base.AbstractActivity;
 
 public class WebActivity extends AbstractActivity {

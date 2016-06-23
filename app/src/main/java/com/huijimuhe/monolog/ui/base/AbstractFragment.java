@@ -10,11 +10,8 @@ public abstract class AbstractFragment extends Fragment {
     public static final int STATE_NOMORE = 3;
     public static int mState = STATE_NORMAL;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
     }

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.easemob.easeui.EaseConstant;
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.ui.base.AbstractFragment;
 import com.huijimuhe.monolog.ui.chat.ChatActivity;
 
@@ -20,7 +20,7 @@ public class SuccessFragment extends AbstractFragment implements View.OnClickLis
     private ImageView mIvAvatar;
     private TextView mTvName;
 
-    private UserBean mGuessedUser;
+    private Account mGuessedUser;
 
     public static SuccessFragment newInstance() {
         SuccessFragment fragment = new SuccessFragment();
@@ -36,7 +36,7 @@ public class SuccessFragment extends AbstractFragment implements View.OnClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGuessedUser = new UserBean();
+        mGuessedUser = new Account();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class SuccessFragment extends AbstractFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_share:
-                ((MainActivity) getActivity()).openShare();
+               // ((MainActivity) getActivity()).openShare();
                 break;
             case R.id.btn_chat:
                 startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, mGuessedUser.getId()));
@@ -80,7 +80,7 @@ public class SuccessFragment extends AbstractFragment implements View.OnClickLis
         }
     }
 
-    public void notifyChange(UserBean user) {
+    public void notifyChange(Account user) {
         if (!isAdded()) {
             return;
         }

@@ -3,9 +3,7 @@ package com.huijimuhe.monolog.ui.chat;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,9 +17,8 @@ import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.ui.EaseConversationListFragment;
 import com.easemob.util.EMLog;
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.ui.base.AbstractActivity;
-import com.huijimuhe.monolog.ui.statue.PublishActivity;
 
 public class ChatListActivity extends AbstractActivity {
     private EaseConversationListFragment conversationListFragment;

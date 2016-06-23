@@ -11,9 +11,10 @@ import com.huijimuhe.monolog.adapter.StatueListAdapter;
 import com.huijimuhe.monolog.adapter.base.AbstractRenderAdapter;
 import com.huijimuhe.monolog.adapter.base.AbstractRender;
 import com.huijimuhe.monolog.adapter.base.AbstractViewHolder;
-import com.huijimuhe.monolog.bean.StatueBean;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.data.statue.Statue;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
+import com.huijimuhe.monolog.presenter.statues.StatueContract;
 import com.huijimuhe.monolog.utils.NumUtils;
 import com.huijimuhe.monolog.utils.TimeUtils;
 
@@ -25,14 +26,14 @@ public class ProfileRender extends AbstractRender{
 
     private ViewHolder mHolder;
     private AbstractRenderAdapter mAdapter;
-    private UserBean mUser;
+    private Account mUser;
     private int mType;
 
     public ProfileRender() {
 
     }
 
-    public ProfileRender(ViewGroup parent, AbstractRenderAdapter adapter, int type, UserBean user) {
+    public ProfileRender(ViewGroup parent, AbstractRenderAdapter adapter, int type, Account user) {
         this.mAdapter =adapter;
         this.mType =type;
         this.mUser=user;
@@ -44,7 +45,7 @@ public class ProfileRender extends AbstractRender{
 
     @Override
     public void bindData(int position) {
-        StatueBean model=(StatueBean)mAdapter.getItem(position);
+        Statue model=(Statue)mAdapter.getItem(position);
         mHolder.mTvText.setText(model.getText());
         mHolder.mTvCreatedAt.setText(TimeUtils.getTime(model.getCreated_at()));
         mHolder.mTvRightCount.setText(NumUtils.converNumToString(model.getRight_count()));
@@ -74,7 +75,7 @@ public class ProfileRender extends AbstractRender{
             mIvStatue = (ImageView) v.findViewById(R.id.iv_img);
             mTvReport = (TextView) v.findViewById(R.id.tv_report);
             mTvDelete = (TextView) v.findViewById(R.id.tv_delete);
-           if(type== StatueListAdapter.RENDER_TYPE_USER_PROFILE) {
+           if(type== StatueContract.RENDER_TYPE_OTHER_PROFILE) {
                mTvDelete.setVisibility(View.GONE);
                mTvReport.setVisibility(View.VISIBLE);
                mTvReport.setOnClickListener(new View.OnClickListener() {

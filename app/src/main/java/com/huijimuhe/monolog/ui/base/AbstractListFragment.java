@@ -11,18 +11,24 @@ import android.widget.LinearLayout;
 
 import com.huijimuhe.monolog.R;
 import com.huijimuhe.monolog.adapter.base.AbstractRenderAdapter;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.data.statue.Statue;
+import com.huijimuhe.monolog.presenter.statues.StatueContract;
+import com.huijimuhe.monolog.presenter.statues.StatuesPresenter;
 
-import org.apache.http.Header;
+import java.util.List;
 
-public abstract class AbstractListFragment extends AbstractFragment
-        implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class AbstractListFragment extends AbstractFragment implements StatueContract.View {
+
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected RecyclerView mRecyclerView;
     protected LinearLayout mEmptyLayout;
     protected LinearLayoutManager mLayoutManager;
     protected AbstractRenderAdapter mAdapter;
-    protected int mCurrentPage = 0;
     protected int lastVisibleItem = 0;
+    protected StatuesPresenter mPresenter;
+    protected int mListType;
+    protected Account mAccount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,26 +36,33 @@ public abstract class AbstractListFragment extends AbstractFragment
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_list, container, false);
 
+        //get list type
+        getListType();
+
         //empty layout
-        mEmptyLayout=(LinearLayout)v.findViewById(R.id.list_empty_bg);
+        mEmptyLayout = (LinearLayout) v.findViewById(R.id.list_empty_bg);
 
         //swipe refresh layout
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.darker_gray);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.loadPage(true,mListType,mAccount);
+            }
+        });
 
         //recycler view
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_list);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem  == mAdapter.getItemCount()) {
-                    loadOldData();
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem == mAdapter.getItemCount()) {
+                    mPresenter.loadPage(false,mListType,mAccount);
                 }
             }
 
@@ -59,6 +72,9 @@ public abstract class AbstractListFragment extends AbstractFragment
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
             }
         });
+        //presenter
+        mPresenter = new StatuesPresenter(this);
+        mPresenter.start();
         return v;
     }
 
@@ -80,86 +96,51 @@ public abstract class AbstractListFragment extends AbstractFragment
                 onItemFunctionClick(view, postion, type);
             }
         });
-        //get data
-        setSwipeRefreshLoading();
-        loadNewData();
-        mState = STATE_REFRESH;
+
+        //loadGuess new data
+        mPresenter.loadPage(true,mListType,mAccount);
     }
 
     @Override
-    public void onRefresh() {
-        if (mState == STATE_REFRESH) {
-            return;
-        }
-        loadNewData();
+    public void showLoading(final boolean active) {
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(active);
+                mSwipeRefreshLayout.setEnabled(!active);
+            }
+        });
     }
 
+    @Override
+    public void showToast(String msg) {
 
-    protected void setSwipeRefreshLoading() {
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    mSwipeRefreshLayout.setRefreshing(true);
-                    mSwipeRefreshLayout.setEnabled(false);
-                }
-            });
-        }
     }
 
-    protected void setSwipeRefreshNormal() {
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    mSwipeRefreshLayout.setRefreshing(false);
-                    mSwipeRefreshLayout.setEnabled(true);
-                }
-            });
+    @Override
+    public void showContent(List<Statue> statues, boolean isNew) {
+        mEmptyLayout.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        if (isNew) {
+            mAdapter.replace(statues);
+        } else {
+            mAdapter.addAll(statues);
         }
     }
 
-    protected void showEmptyLayout(){
+    @Override
+    public void showEmpty() {
         mEmptyLayout.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
     }
 
-    protected void hideEmptyLayout(){
-         mRecyclerView.setVisibility(View.VISIBLE);
-        mEmptyLayout.setVisibility(View.GONE);
+    @Override
+    public void removeItem(Statue item) {
+        mAdapter.remove(item);
     }
+
     public abstract AbstractRenderAdapter getAdapter();
-
-    public abstract void loadNewData();
-
-    public abstract void loadOldData();
-
+    public abstract void getListType();
     public abstract void onItemNormalClick(View view, int postion);
-
     public abstract void onItemFunctionClick(View view, int postion, int type);
-
-    public class TextHttpResponseHandlerEx extends com.loopj.android.http.TextHttpResponseHandler {
-        @Override
-        public void onStart() {
-            super.onStart();
-            mState = STATE_REFRESH;
-            setSwipeRefreshLoading();
-        }
-
-        @Override
-        public void onFinish() {
-            super.onFinish();
-            mState = STATE_NORMAL;
-            setSwipeRefreshNormal();
-        }
-
-        @Override
-        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-        }
-
-        @Override
-        public void onSuccess(int statusCode, Header[] headers, String responseString) {
-
-        }
-    }
 }

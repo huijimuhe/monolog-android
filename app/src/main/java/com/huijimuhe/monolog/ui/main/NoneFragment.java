@@ -45,7 +45,7 @@ public class NoneFragment extends AbstractFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_share:
-                ((MainActivity) getActivity()).openShare();
+               // ((MainActivity) getActivity()).openShare();
                 break;
             case R.id.btn_publish:
                 startActivityForResult(PublishActivity.newIntent(), PublishActivity.REQUEST_PUBLISH);

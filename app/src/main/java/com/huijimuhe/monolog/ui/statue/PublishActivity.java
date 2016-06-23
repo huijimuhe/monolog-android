@@ -2,7 +2,6 @@ package com.huijimuhe.monolog.ui.statue;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,17 +18,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huijimuhe.monolog.R;
-import com.huijimuhe.monolog.api.StatueApi;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.network.StatueApi;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.domain.BaiduService;
 import com.huijimuhe.monolog.ui.base.AbstractActivity;
-import com.huijimuhe.monolog.ui.base.OnBaiduLBSListener;
+import com.huijimuhe.monolog.domain.OnBaiduLBSListener;
 import com.huijimuhe.monolog.ui.main.MainActivity;
 import com.huijimuhe.monolog.utils.FileUtils;
 import com.huijimuhe.monolog.utils.ImageUtils;
 import com.huijimuhe.monolog.utils.JsonUtils;
-import com.huijimuhe.monolog.domain.PrefService;
+import com.huijimuhe.monolog.domain.PrefManager;
 import com.huijimuhe.monolog.utils.MD5Utils;
 import com.huijimuhe.monolog.utils.ToastUtils;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -37,14 +36,15 @@ import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
 
-import org.apache.http.Header;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Random;
 
+import cz.msebera.android.httpclient.Header;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 public class PublishActivity extends AbstractActivity implements ImageView.OnClickListener {
@@ -58,7 +58,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
     public static final int HANDLER_PUBLISH = 0x6;
 
     public static final int REQUEST_IMAGE = 21;
-    public static final int REQUEST_PUBLISH =21;
+    public static final int REQUEST_PUBLISH = 21;
 
     public static final int RESULT_OK = 30;
 
@@ -75,7 +75,8 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
     private String mOSSKey;
     private String mSelectPath;
     private File mThumbFile;
-    private boolean bIsUploading=false;
+    private boolean bIsUploading = false;
+
     public static Intent newIntent() {
         Intent intent = new Intent(AppContext.getInstance(),
                 PublishActivity.class);
@@ -88,7 +89,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
         setContentView(R.layout.activity_publish);
         initUI();
         BaiduService.getInstance().StartLocation(baiduLBSListener);
-        handler=new MyHandler(PublishActivity.this);
+        handler = new MyHandler(PublishActivity.this);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
         super.onDestroy();
         BaiduService.getInstance().StopLocation();
         baiduLBSListener = null;
-        handler=null;
+        handler = null;
     }
 
     private void initUI() {
@@ -162,14 +163,14 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_publish) {
-            if(!bIsUploading){
+            if (!bIsUploading) {
                 if (validInput()) {
                     ToastUtils.show(PublishActivity.this, "开始上传");
                     //上传图片，然后发布消息
                     handler.sendEmptyMessage(HANDLER_PUBLISH);
                     item.setEnabled(false);
                 }
-            }else{
+            } else {
                 ToastUtils.show(PublishActivity.this, "上传中");
             }
             return true;
@@ -189,9 +190,9 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
                 handler.sendEmptyMessage(HANDLER_PUBLISH_SUCCESS);
             }
         });
-
     }
-    private void getUploadToken(){
+
+    private void getUploadToken() {
         final UploadManager uploadManager = new UploadManager();
         mOSSKey = "";
         StatueApi.getOssToken(new TextHttpResponseHandler() {
@@ -204,12 +205,12 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
 
                 try {
-                    mOSSToken=  JsonUtils.getString("uptoken", new JSONObject(responseString.trim()));
+                    mOSSToken = JsonUtils.getString("uptoken", new JSONObject(responseString.trim()));
                 } catch (Exception e) {
                     e.printStackTrace();
                     handler.sendEmptyMessage(HANDLER_IMAGE_UPLOAD_FAILED);
                 }
-                String tempKey="monolog_"+ MD5Utils.md5(String.valueOf(mThumbFile.hashCode()))+".jpg";
+                String tempKey = "monolog_" + MD5Utils.md5(String.valueOf(mThumbFile.hashCode())) + ".jpg";
                 uploadManager.put(mThumbFile, tempKey, mOSSToken,
                         new UpCompletionHandler() {
                             @Override
@@ -233,6 +234,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
             }
         });
     }
+
     private void pickImgClick() {
         Intent intent = new Intent(PublishActivity.this, MultiImageSelectorActivity.class);
         intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
@@ -245,8 +247,8 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
 
         Uri imgUri;
 
-        public getThumbImgTask(Uri uri){
-            imgUri=uri;
+        public getThumbImgTask(Uri uri) {
+            imgUri = uri;
         }
 
         @Override
@@ -269,7 +271,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
                 } else {
                     try {
                         // create thumbnail
-                      //  Bitmap b = ImageUtils.loadImgThumbnail(largeFilePath, 200, 200);
+                        //  Bitmap b = ImageUtils.loadImgThumbnail(largeFilePath, 200, 200);
                         ImageUtils.createImageThumbnail(AppContext.getInstance(), largeFilePath, thumbFilePath, 800, 80);
                         mThumbFile = new File(thumbFilePath);
                         if (!mThumbFile.exists()) {
@@ -306,7 +308,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
                 public void onSuccess(int statusCode, Header[] headers, String responseString) {
 
                     try {
-                        mOSSToken=  JsonUtils.getString("uptoken", new JSONObject(responseString.trim()));
+                        mOSSToken = JsonUtils.getString("uptoken", new JSONObject(responseString.trim()));
                     } catch (Exception e) {
                         e.printStackTrace();
                         handler.sendEmptyMessage(HANDLER_IMAGE_UPLOAD_FAILED);
@@ -337,11 +339,11 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
         }
     }
 
-    private class MyHandler extends  Handler {
+    private class MyHandler extends Handler {
         WeakReference<PublishActivity> mAct;
 
-        public  MyHandler(PublishActivity act){
-            mAct=new WeakReference<>(act);
+        public MyHandler(PublishActivity act) {
+            mAct = new WeakReference<>(act);
         }
 
         @Override
@@ -350,7 +352,7 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
             switch (msg.what) {
                 case HANDLER_IMAGE_UPLOAD_FAILED:
                     ToastUtils.show(mAct.get(), "图片上传失败,请重试");
-                    mAct.get().bIsUploading=false;
+                    mAct.get().bIsUploading = false;
                     break;
                 case HANDLER_IMAGE_UPLOAD_SUCCESS:
                     mAct.get().post();
@@ -361,31 +363,33 @@ public class PublishActivity extends AbstractActivity implements ImageView.OnCli
                     break;
                 case HANDLER_GET_THUMB_FAILED:
                     ToastUtils.show(mAct.get(), "图片选择失败,请重试");
-                    mAct.get().bIsUploading=false;
+                    mAct.get().bIsUploading = false;
                     break;
                 case HANDLER_PUBLISH_FAILED:
                     ToastUtils.show(mAct.get(), "网络错误请重试");
-                    mAct.get().bIsUploading=false;
+                    mAct.get().bIsUploading = false;
                     break;
                 case HANDLER_PUBLISH_SUCCESS:
                     ToastUtils.show(mAct.get(), "发布成功");
-                    mAct.get().bIsUploading=false;
+                    mAct.get().bIsUploading = false;
 
                     //计数
-                    UserBean owner= PrefService.getInstance(getApplicationContext()).getUser();
+                    Account owner = PrefManager.getInstance().getUser();
                     owner.setStatue_count(owner.getStatue_count() + 1);
-                    PrefService.getInstance(getApplicationContext()).setUser(owner);
+                    PrefManager.getInstance().setUser(owner);
                     mAct.get().setResult(MainActivity.RESULT_OK);
 
                     finish();
                     break;
                 case HANDLER_PUBLISH:
-                    mAct.get().bIsUploading=true;
+                    mAct.get().bIsUploading = true;
                     mAct.get().getUploadToken();//new Thread(new uploadImgTask()).start();
                     break;
             }
         }
-    };
+    }
+
+    ;
 
     private OnBaiduLBSListener baiduLBSListener = new OnBaiduLBSListener() {
         @Override

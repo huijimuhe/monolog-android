@@ -15,15 +15,16 @@ import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseUser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.huijimuhe.monolog.api.AuthApi;
-import com.huijimuhe.monolog.api.TextHttpResponseLoopHandler;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.network.AuthApi;
+import com.huijimuhe.monolog.network.TextHttpResponseLoopHandler;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
 import com.huijimuhe.monolog.db.ContactDao;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.Header;
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Huijimuhe on 2016/3/20.
@@ -31,7 +32,7 @@ import java.util.ArrayList;
  * enjoy
  */
 public class EaseMobService {
-    protected static final String TAG = "EaseMobService";
+    protected static final String TAG =EaseMobService.class.getName();
 
     /**
      * 单例
@@ -51,7 +52,8 @@ public class EaseMobService {
     /**
      * 登录用户
      */
-    private UserBean mOwner;
+    private Account mOwner;
+
     /**
      * Looper线程
      */
@@ -93,7 +95,7 @@ public class EaseMobService {
 
                     //未在聊天的任何界面就计数
                     if (!EaseUI.getInstance().hasForegroundActivies()) {
-                        PrefService.getInstance(mContext).increatUnread();
+                        PrefManager.getInstance().increatUnread();
                         Log.d(TAG, "new Msg Count");
                     }
 
@@ -116,7 +118,7 @@ public class EaseMobService {
                                                         @Override
                                                         public EaseUser getUser(String username) {
                                                             //是否是本人
-                                                            UserBean owner = AppContext.getInstance().getUser();
+                                                            Account owner = AppContext.getInstance().getUser();
                                                             if (username.equals(owner.getId())) {
                                                                 EaseUser eu = new EaseUser(username);
                                                                 eu.setNick(owner.getName());
@@ -133,18 +135,15 @@ public class EaseMobService {
 
     /**
      * 用户登录
-     *
-     * @param handler
      */
-    public void easeMobLogin(final Handler handler) {
-        UserBean user = AppContext.getInstance().getUser();
-        String name = user.getId();
-        String pwd = "pwd" + user.getId();
+    public void easeMobLogin(Account account,final EMCallBack callback) {
+        String name = account.getId();
+        String pwd = "pwd" + account.getId();
         EMChatManager.getInstance().login(name, pwd, new EMCallBack() {
 
             @Override
             public void onSuccess() {
-                handler.sendEmptyMessage(0);
+                callback.onSuccess();
             }
 
             @Override
@@ -153,7 +152,7 @@ public class EaseMobService {
 
             @Override
             public void onError(final int code, final String error) {
-                handler.sendEmptyMessage(1);
+                callback.onError(code,error);
             }
         });
     }
@@ -180,37 +179,11 @@ public class EaseMobService {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Gson gson = new Gson();
-                UserBean user = gson.fromJson(responseString, UserBean.class);
+                Account user = gson.fromJson(responseString, Account.class);
                 Log.d(TAG, user.toString());
                 ContactDao.asyncReplace(user, AppContext.getInstance().getUser().getId());
                 thread.quit();
             }
         });
-    }
-
-    /**
-     * 获取联系人列表
-     */
-    public void getContacts(final Handler handler) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AuthApi.contacts(new TextHttpResponseHandler() {
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                        Gson gson = new Gson();
-                        //获取用户列表
-                        ArrayList<UserBean> contacts = gson.fromJson(responseString, new TypeToken<ArrayList<UserBean>>() {
-                        }.getType());
-                        ContactDao.asyncReplaceAll(contacts, AppContext.getInstance().getUser().getId());
-                    }
-                });
-            }
-        }).run();
     }
 }

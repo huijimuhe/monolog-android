@@ -19,20 +19,21 @@ import android.widget.TextView;
 
 import com.huijimuhe.monolog.R;
 import com.huijimuhe.monolog.adapter.DrawerListAdapter;
-import com.huijimuhe.monolog.adapter.StatueListAdapter;
-import com.huijimuhe.monolog.api.AuthApi;
-import com.huijimuhe.monolog.bean.UserBean;
-import com.huijimuhe.monolog.core.AppContext;
+import com.huijimuhe.monolog.network.AuthApi;
+import com.huijimuhe.monolog.data.account.Account;
+import com.huijimuhe.monolog.AppContext;
+import com.huijimuhe.monolog.presenter.statues.StatueContract;
 import com.huijimuhe.monolog.ui.auth.SignInActivity;
 import com.huijimuhe.monolog.ui.chat.ChatListActivity;
 import com.huijimuhe.monolog.ui.setting.SettingActivity;
 import com.huijimuhe.monolog.ui.statue.AccountStatueListActivity;
 import com.huijimuhe.monolog.ui.statue.StatueListActivity;
 import com.huijimuhe.monolog.utils.NumUtils;
-import com.huijimuhe.monolog.domain.PrefService;
+import com.huijimuhe.monolog.domain.PrefManager;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
+
 
 public class DrawerFragment extends Fragment {
     private NavigationDrawerCallbacks mCallbacks;
@@ -95,7 +96,7 @@ public class DrawerFragment extends Fragment {
                         break;
                     case 6:
                         //关于独白
-                        ((MainActivity)getActivity()).openShare();
+                        //((MainActivity)getActivity()).openShare();
                         break;
                 }
                 hideDrawer();
@@ -104,7 +105,7 @@ public class DrawerFragment extends Fragment {
     }
 
     private void postSignOut() {
-        PrefService.getInstance(getActivity()).cleanUser();
+        PrefManager.getInstance().cleanUser();
         startActivity(SignInActivity.newIntent());
         AuthApi.signOut(new TextHttpResponseHandler() {
             @Override
@@ -146,7 +147,7 @@ public class DrawerFragment extends Fragment {
             View btn_miss=  header.findViewById(R.id.layout_miss_num);
 
             //bind data
-            UserBean owner= PrefService.getInstance(getActivity()).getUser();
+            Account owner= PrefManager.getInstance().getUser();
             tv_name.setText(owner.getName());
             tv_gender.setText(owner.getGender().equals("m") ? "男" : "女");
             tv_statueNm.setText(NumUtils.converNumToString(String.valueOf(owner.getStatue_count())));
@@ -174,7 +175,7 @@ public class DrawerFragment extends Fragment {
         ImageView iv_avatar = (ImageView) headerView.findViewById(R.id.iv_avatar);
 
         //bind data
-        UserBean owner= PrefService.getInstance(getActivity()).getUser();
+        Account owner= PrefManager.getInstance().getUser();
         tv_name.setText(owner.getName());
         tv_gender.setText(owner.getGender().equals("m") ? "男" : "女");
         tv_statueNm.setText(NumUtils.converNumToString(String.valueOf(owner.getStatue_count())));
@@ -189,14 +190,14 @@ public class DrawerFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.layout_statue_num:
-                    UserBean user= PrefService.getInstance(getActivity()).getUser();
-                    startActivity(AccountStatueListActivity.newIntent(StatueListAdapter.RENDER_TYPE_MY_PROFILE,user));
+                    Account user= PrefManager.getInstance().getUser();
+                    startActivity(AccountStatueListActivity.newIntent(StatueContract.RENDER_TYPE_MY_PROFILE,user));
                     break;
                 case R.id.layout_miss_num:
-                    startActivity(StatueListActivity.newIntent(StatueListAdapter.RENDER_TYPE_MISS));
+                    startActivity(StatueListActivity.newIntent(StatueContract.RENDER_TYPE_MISS));
                     break;
                 case R.id.layout_right_num:
-                    startActivity(StatueListActivity.newIntent(StatueListAdapter.RENDER_TYPE_RIGHT));
+                    startActivity(StatueListActivity.newIntent(StatueContract.RENDER_TYPE_RIGHT));
                     break;
                 case R.id.btn_signin:
                     startActivity(SignInActivity.newIntent());
@@ -214,8 +215,8 @@ public class DrawerFragment extends Fragment {
                 getActivity(),                    /* host Activity */
                 mDrawerLayout,                    /* DrawerLayout object */
                 toolbar,             /* nav drawer image to replace 'Up' caret */
-                R.string.crop__done,  /* "open drawer" description for accessibility */
-                R.string.crop__cancel /* "close drawer" description for accessibility */
+               R.string.crop__done,  /* "open drawer" description for accessibility */
+               R.string.crop__cancel /* "close drawer" description for accessibility */
         ) {
             @Override
             public void onDrawerClosed(View drawerView) {

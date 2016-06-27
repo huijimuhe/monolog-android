@@ -2,17 +2,10 @@
 
 ##Intro
 
-![](https://github.com/huijimuhe/monolog/blob/master/screenshot/1.jpg)
-![](https://github.com/huijimuhe/monolog/blob/master/screenshot/2.jpg)
-![](https://github.com/huijimuhe/monolog/blob/master/screenshot/3.jpg)
-![](https://github.com/huijimuhe/monolog/blob/master/screenshot/4.jpg)
-![](https://github.com/huijimuhe/monolog/blob/master/screenshot/5.jpg)
+![](https://github.com/huijimuhe/monolog/blob/master/screenshot/1.jpg) 
 
-Monolog was created for dating a girl,but she turned me down.
-
-Monolog is a fully functional LBS IM android application,you can try it [here](http://http://fir.im/monolog)
-
-The rule is simple,app push a monolog and three user avatars,guess who worte this monolog,If correct,you can chat with the author.If not,refresh and guess next.
+其实我就一拿来练手的项目，为啥都觉得我是在搞软广见我发文就删呢..真是莫名其妙，反正自认为文章和代码比很多网上的toy code强吧,哈哈哈.
+重构至mvp结构的请看分支1.1
 
 ##How to use
 
@@ -21,10 +14,6 @@ eeeee...basicly,you can't get json data.I write the web-end by laravel 4.2.I sti
 but it won't effect you build the app.
 
 **you must find strings [YOURS] and change to your keys.**
-
-##Where is the iOS version
-
-Take it easy,the time will come.Pretty soon I guess.And the web-end will open too.
 
 ##Depends
 many,u can find in gradle file.Here is Main depends.

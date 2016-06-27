@@ -65,9 +65,9 @@ public class SplashActivity extends AbstractActivity {
      */
     private void initEnvir() {
         //初始化SDK
-        CrashReport.initCrashReport(getApplicationContext(), "900032888", false);
+        CrashReport.initCrashReport(getApplicationContext(), "[YOURS]", false);
         PrefManager.init(AppContext.getInstance());
-        PlatformConfig.setWeixin("wx0946e363f44df0d0", "4372f55b656db843a0107a3dbac2431e");
+        PlatformConfig.setWeixin("[YOURS]", "[YOURS]");
         //easeMob
         EaseMobService.getInstance().init(AppContext.getInstance());
 
@@ -105,7 +105,7 @@ public class SplashActivity extends AbstractActivity {
 
     private void setupSplashAd() {
         container = (ViewGroup) findViewById(R.id.splash_container);
-        new SplashAD(this, container, "1104878885", "7040915046057449", new SplashADListener() {
+        new SplashAD(this, container, "[YOURS]", "[YOURS]", new SplashADListener() {
             @Override
             public void onADDismissed() {
                 next();

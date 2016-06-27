@@ -9,10 +9,10 @@ import com.loopj.android.http.RequestParams;
 
 public class BaseClient {
 
-    public static final String URL_USER_ABOUT = "http://monolog.huijimuhe.com";
-    public static final String URL_USER_AGREEMENT = "http://monolog.huijimuhe.com/agreement";
+    public static final String URL_USER_ABOUT = "[YOURS]";
+    public static final String URL_USER_AGREEMENT = "[YOURS]";
 
-    public static final String URL_BASE = "http://monolog.huijimuhe.com/api/";
+    public static final String URL_BASE = "[YOURS]";
     public static final String URL_GET_STATUE = "statue";
     public static final String URL_GET_MY_STATUES = "mystatues/";
     public static final String URL_GET_USER_STATUES = "userstatues/";

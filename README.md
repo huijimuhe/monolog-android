@@ -4,36 +4,32 @@
 
 ![](https://github.com/huijimuhe/monolog/blob/master/screenshot/1.jpg) 
 
-其实我就一拿来练手的项目，为啥都觉得我是在搞软广见我发文就删呢..真是莫名其妙，反正自认为文章和代码比很多网上的toy code强吧,哈哈哈.
-重构至mvp结构的请看分支1.1
+重构文章列表:
+[简书](http://www.jianshu.com/notebooks/4600705/latest)
 
-##How to use
+已重构至mvp结构，请看分支1.1
 
-eeeee...basicly,you can't get json data.I write the web-end by laravel 4.2.I still need to use the instructure for the next project.So till I write a new one,the web-end will temporarily not open.but you can use fiddler to find out my domain,till my fee runs out,I won't shut it down.
+##How to use 
 
-but it won't effect you build the app.
+服务器端已开源，可部署后联调。
 
 **you must find strings [YOURS] and change to your keys.**
 
 ##Depends
+
 many,u can find in gradle file.Here is Main depends.
-
-
+ 
 	1.UMENG.For anaylist
 	2.HUANXIN.For IM
 	3.BAIDU MAP.For LBS
 
 ##What you can learn
+
 All basic stuffs.
-
-
+ 
 ##Extra
 
-This project is still avaliable in stores,so I will countiue update.
-
-and as always.You can find store screenshot template file in \screenshot.
-
-Those whom just change AD id and upload to stores are unwelcome.If I find out,I will shut service down.
+服务器端已经完整开源,[here](https://github.com/huijimuhe/monolog-web)
 
 欢迎加入APP独立开发联盟qq技术交流群533838427
 
